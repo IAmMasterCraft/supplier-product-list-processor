@@ -43,30 +43,37 @@ The Supplier Product List Processor is a PHP application that parses and process
 The application supports parsing data from `CSV`, `JSON`, and `XML` files. You can use the `parser.php` script to process these files and generate unique combinations of product attributes.
 
 ### Command Syntax
-    ```bash
-    php parser.php --file <input-file> --unique-combinations <output-file>
-    ```
+
+   ```bash
+   php parser.php --file <input-file> --unique-combinations <output-file>
+   ```
 - <input-file>: The path to the input data file (CSV, JSON, or XML).
 - <output-file>: The path to the output file where unique combinations will be saved.
 
 ### Examples
 Parse a CSV file and generate unique combinations:
 
-    ```bash
-    php parser.php --file example.csv --unique-combinations combination_count.csv
-    ```
+   ```bash
+   php parser.php --file products_comma_separated.csv --unique-combinations combination_count.csv
+   ```
+
+Parse a TSV file and generate unique combinations:
+
+   ```bash
+   php parser.php --file products_tab_separated.tsv --unique-combinations combination_count.csv
+   ```
 
 Parse a JSON file and generate unique combinations:
 
-    ```bash
-    php parser.php --file example.json --unique-combinations combination_count.json
-    ```
+   ```bash
+   php parser.php --file example.json --unique-combinations combination_count.json
+   ```
 
 Parse an XML file and generate unique combinations:
 
-    ```bash
-    php parser.php --file example.xml --unique-combinations combination_count.xml
-    ```
+   ```bash
+   php parser.php --file example.xml --unique-combinations combination_count.xml
+   ```
 
 ## Supported File Formats
 The application supports the following file formats for input data:
@@ -86,9 +93,9 @@ The application supports the following file formats for input data:
 ## Testing
 To run the unit tests, use the following command:
 
-    ```bash
-    composer test
-    ```
+   ```bash
+   composer test
+   ```
 
 Author
 [IAmMasterCraft](https://github.com/IAmMasterCraft)
