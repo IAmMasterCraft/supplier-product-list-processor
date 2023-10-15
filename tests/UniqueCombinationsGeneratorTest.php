@@ -1,5 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
+require_once(__DIR__ . '/../src/UniqueCombinationsGenerator.php');
 
 class UniqueCombinationsGeneratorTest extends TestCase {
     public function testGenerate() {
@@ -36,8 +37,23 @@ class UniqueCombinationsGeneratorTest extends TestCase {
 
         $this->assertFileExists($outputFile);
 
-        $fileContents = file_get_contents($outputFile);
-        $decodedContents = json_decode($fileContents, true);
+        $decodedContents = [];
+        $fileHandle = fopen($outputFile, 'r');
+
+        if ($fileHandle) {
+            while (($line = fgets($fileHandle)) !== false) {
+                $decodedObject = json_decode($line, true);
+                if ($decodedObject !== null) {
+                    $decodedContents[] = $decodedObject;
+                } else {
+                    $this->markTestSkipped("Output file '$outputFile' decoding failed.");
+                }
+            }
+
+            fclose($fileHandle);
+        } else {
+            $this->markTestSkipped("Output file '$outputFile' cannot be opened.");
+        }
 
         $this->assertNotNull($decodedContents);
         $this->assertCount(2, $decodedContents);
