@@ -1,51 +1,97 @@
-# Build a Supplier Product List Processor
+# Supplier Product List Processor
 
-#### Requirement: 
+The Supplier Product List Processor is a PHP application that parses and processes product data from different file formats, creating `Product` objects and generating unique combinations of product attributes. This README provides instructions for running the application and an overview of its features.
 
-We have multiple different formats of files that need to be parsed and returned back as a Product object with all the headings as mapped properties. 
+## Table of Content
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Command Syntax](#command-syntax)
+  - [Examples](#examples)
+- [Supported File Formats](#supported-file-formats)
+- [Features](#features)
+- [Testing](#testing)
+- [Author](#author)
+- [License](#license)
 
-Each product object constitutes a single row within the csv file.
+## Requirements
 
-#### Example Application API:
-`parser.php --file example_1.csv --unique-combinations=combination_count.csv`
+- PHP 7+
+- Composer (for managing dependencies)
 
-When the above is run the parser should display row by row each product object representation of the row. And create a file with a grouped count for each unique combination i.e. make, model, colour, capacity, network, grade, condition.
+## Installation
 
-#### Example Product Object:
-- make: 'Apple' (string, required) - Brand name
-- model: 'iPhone 6s Plus' (string, required) - Model name
-- colour: 'Red' (string) - Colour name
-- capacity: '256GB' (string) - GB Spec name
-- network: 'Unlocked' (string) - Network name
-- grade: 'Grade A' (string) - Grade Name
-- condition: 'Working' (string) - Condition name
+1. Clone the repository to your local machine:
 
-#### Example Unique Combinations File:
-- make: 'Apple'
-- model: 'iPhone 6s Plus'
-- colour: 'Red'
-- capacity: '256GB'
-- network: 'Unlocked'
-- grade: 'Grade A'
-- condition: 'Working'
-- count: 129
+   ```bash
+   git clone https://github.com/yourusername/supplier-product-list-processor.git
+   ```
 
-#### Things to note:
-  - New formats could be introduced in the future ie. (json, xml etc).
-  - File headings could change in the future.
-  - Some files can be very large so watch out for memory usage.
-  - The code should be excutable from a terminal.
-  - Please provide brief read me describing how to run your application.
-  - PHP 7+ must be used.
-  - Should be built using native PHP and no third party libraries.
-  - Required fields if not found within file should throw an exception.
+2. Navigate to the project directory:
 
+   ```bash
+   cd supplier-product-list-processor
+   ```
 
-#### Bonus:
-  - Add unit/integration tests.
+3. Install Composer dependencies:
 
-Example files can be found in the examples directory.
+   ```bash
+   composer install
+   ```
 
-Please make sure this project is completed at least one working day before your interview.
+## Usage
+The application supports parsing data from `CSV`, `JSON`, and `XML` files. You can use the `parser.php` script to process these files and generate unique combinations of product attributes.
 
-The completed project should be submitted by pushing the code to GitHub and a link emailed to HR.
+### Command Syntax
+    ```bash
+    php parser.php --file <input-file> --unique-combinations <output-file>
+    ```
+- <input-file>: The path to the input data file (CSV, JSON, or XML).
+- <output-file>: The path to the output file where unique combinations will be saved.
+
+### Examples
+Parse a CSV file and generate unique combinations:
+
+    ```bash
+    php parser.php --file example.csv --unique-combinations combination_count.csv
+    ```
+
+Parse a JSON file and generate unique combinations:
+
+    ```bash
+    php parser.php --file example.json --unique-combinations combination_count.json
+    ```
+
+Parse an XML file and generate unique combinations:
+
+    ```bash
+    php parser.php --file example.xml --unique-combinations combination_count.xml
+    ```
+
+## Supported File Formats
+The application supports the following file formats for input data:
+
+- CSV (Comma-Separated Values)
+- TSV (Tab-Separated Values)
+- JSON (JavaScript Object Notation)
+- XML (Extensible Markup Language)
+
+## Features
+- Parses data from CSV, TSV, JSON, and XML files.
+- Generates unique combinations of product attributes.
+- Supports different file formats for input data.
+- Exception handling for missing required fields.
+- Provides unit tests for verification.
+
+## Testing
+To run the unit tests, use the following command:
+
+    ```bash
+    composer test
+    ```
+
+Author
+[IAmMasterCraft](https://github.com/IAmMasterCraft)
+
+License
+This project is open-source and available under the MIT License.
